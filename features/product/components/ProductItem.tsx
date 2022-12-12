@@ -1,18 +1,22 @@
+import { FC } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { sampleProduct } from '../../../public'
+import { IProduct } from '../index'
 
-const ProductItem = () => {
+const ProductItem: FC<{ product: IProduct }> = ({
+  product: { name, price, slug },
+}) => {
   return (
     <div className="hover:shadow-2xl">
       <Image src={sampleProduct} alt="Sample product shoe" />
       <div className="p-3 pb-7">
-        <Link legacyBehavior href={'/products/sample-product'}>
-          <a className="hover:underline">Nike sneakers Red</a>
+        <Link legacyBehavior href={`/products/${slug}`}>
+          <a className="hover:underline">{name}</a>
         </Link>
         <h3 className="my-1">
-          <span className="text-xl font-bold pr-3">Ghc 50</span>
-          <span className="line-through">Ghc 150</span>
+          <span className="text-xl font-bold pr-3">Ghc {price}</span>
+          <span className="line-through">Ghc {price}</span>
         </h3>
         <div className="mt-10">
           <Link legacyBehavior href={'/'}>
