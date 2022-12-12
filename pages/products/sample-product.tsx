@@ -1,8 +1,5 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import Link from 'next/link'
 import { ProductDetails } from '../../features/product'
-import { sampleProduct } from '../../public'
 
 export default function SingleProductPage() {
   return (
