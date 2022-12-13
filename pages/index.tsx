@@ -1,8 +1,9 @@
+import { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { ProductItem } from '../features/product'
+import { getProducts, IProduct, ProductItem } from '../features/product'
 
-export default function Home() {
+const HomePage: NextPage<{ products: IProduct[] }> = ({ products }) => {
   return (
     <div>
       <Head>
@@ -32,13 +33,25 @@ export default function Home() {
 
         <section className="w-4/5 mx-auto mt-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-5 mb-5">
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
-            <ProductItem />
+            {products.map((product) => (
+              <ProductItem key={product?._id} product={product} />
+            ))}
           </div>
         </section>
       </main>
     </div>
   )
 }
+
+export async function getStaticProps() {
+  const {
+    data: { products },
+  } = await getProducts()
+
+  return {
+    props: { products },
+    revalidate: 1,
+  }
+}
+
+export default HomePage
