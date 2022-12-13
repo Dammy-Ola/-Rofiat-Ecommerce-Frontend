@@ -5,8 +5,11 @@ import CallAndAddToCartButton from './components/CallAndAddToCartButton'
 import Cart from './components/Cart'
 import CartItem from './components/CartItem'
 import CartSummary from './components/CartSummary'
+import ICart, { ICartInitialState, ICartProduct } from './cart.interfaces'
+import cartReducers, { addProductToCart } from './cart.slices'
 
 export {
+  addProductToCart,
   AddToCartButton,
   AddToCartButtonLayout,
   AddToCartQtyButton,
@@ -14,4 +17,7 @@ export {
   Cart,
   CartSummary,
   CartItem,
+  cartReducers,
 }
+
+export type { ICart, ICartInitialState, ICartProduct }
