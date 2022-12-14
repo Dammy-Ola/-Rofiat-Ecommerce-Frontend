@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useEffect } from 'react'
 import { useAppDispatch } from '../../../hooks'
 import { addProductToCart, ICartProduct } from '../index'
 
@@ -8,6 +8,8 @@ const AddToCartButton: FC<{ product: ICartProduct }> = ({ product }) => {
   const addToCart = () => {
     dispatch(addProductToCart(product))
   }
+
+  useEffect(() => {}, [dispatch])
 
   return (
     <button

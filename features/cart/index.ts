@@ -6,10 +6,14 @@ import Cart from './components/Cart'
 import CartItem from './components/CartItem'
 import CartSummary from './components/CartSummary'
 import ICart, { ICartInitialState, ICartProduct } from './cart.interfaces'
-import cartReducers, { addProductToCart } from './cart.slices'
+import cartReducers, {
+  addProductToCart,
+  removeProductFromCart,
+} from './cart.slices'
 
 export {
   addProductToCart,
+  removeProductFromCart,
   AddToCartButton,
   AddToCartButtonLayout,
   AddToCartQtyButton,

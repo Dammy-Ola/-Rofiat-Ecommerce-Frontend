@@ -38,6 +38,33 @@ export const cartSlices = createSlice({
         }
       }
     },
+    removeProductFromCart: (
+      state,
+      action: PayloadAction<ICartProduct['_id']>
+    ) => {
+      state.isLoading = true
+
+      // ID of the product to be removed from the cart
+      const cartProductId = action.payload
+
+      // Checking if product is already in the cart
+      const productIsInCart = state.cartItems.find(
+        (cartItem) => cartItem._id === cartProductId
+      )
+
+      if (productIsInCart) {
+        if (productIsInCart.qty === 1) {
+          state.cartItems = state.cartItems.filter(
+            (cartItem) => cartItem._id !== cartProductId
+          )
+        } else {
+          if (typeof productIsInCart.price !== 'undefined') {
+            productIsInCart.qty--
+            productIsInCart.subTotal -= productIsInCart.price
+          }
+        }
+      }
+    },
     resetCart: (state) => {
       state.isLoading = false
       state.isSuccess = false
@@ -49,6 +76,7 @@ export const cartSlices = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { addProductToCart, resetCart } = cartSlices.actions
+export const { addProductToCart, removeProductFromCart, resetCart } =
+  cartSlices.actions
 
 export default cartSlices.reducer

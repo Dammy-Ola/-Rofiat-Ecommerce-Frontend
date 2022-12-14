@@ -17,7 +17,7 @@ const CallAndAddToCartButton: FC<{ product: ICartProduct }> = ({ product }) => {
         {!isProductInCart ? (
           <AddToCartButton product={product} />
         ) : (
-          <AddToCartQtyButton />
+          <AddToCartQtyButton product={product} cartProductId={product._id} />
         )}
       </div>
     </>
